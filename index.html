@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تبدیل متن به HTML</title>
+</head>
+<body>
+    <h1>تبدیل متن به HTML</h1>
+    <textarea id="inputText" rows="10" cols="50" placeholder="متن خود را وارد کنید..."></textarea><br>
+    <button id="downloadBtn">دانلود به عنوان HTML</button>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const text = document.getElementById('inputText').value;
+            const blob = new Blob([text], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'output.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
